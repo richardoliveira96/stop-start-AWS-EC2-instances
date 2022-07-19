@@ -1,4 +1,4 @@
-import json
+9import json
 import boto3
 
 def lambda_handler(event, context):
@@ -8,31 +8,21 @@ def lambda_handler(event, context):
 
     instancesTag = EC2_RESOURCE.instances.filter(
         Filters=[
-        {
-            'Name': 'tag:Group',
-            'Values': [
+            {
+                'Name': 'tag:Group',
+                'Values': [
                 INSTANCE_NAME_TAG_VALUE
-            ]
+                ]
             }
         ]
     )
 
     for instance in instancesTag:
-        try:
-            instance.stop()
-            print(f'Stopping EC2 instance: {instance.id}')
-        except:
-            print(f'Error stopping {instance}')
-
-#instance = EC2_RESOURCE.Instance(instancesTag)
-
-
-
-
-
-#instance.wait_until_stopped()
-   
-#print(f'EC2 instance "{instance.id}" has been stopped')
-
-        
-            
+            try:
+                instance.stop()
+                #print(f'Starting EC2 instance: {instance.id}')
+                #instance.wait_until_stopped()
+                #print(f'EC2 instance "{instance.id}" has been started')
+                print('Parou')
+            except:
+                print(f'Error stopping {instance}')
